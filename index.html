@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>King Foot Massage</title>
+    <title>JOYSE Spa – Body Work & Foot Rub in Chinatown NYC</title>
     <meta
       name="description"
-      content="Experience ultimate relaxation at King Foot Massage, known for exceptional massages tailored to your needs. Clients love our serene environment, skilled therapists, and personalized care. Unwind and recharge with us."
+      content="JOYSE Spa in Chinatown, New York offers relaxing body work, foot rub, head therapy, combo massage, and cupping with friendly service. Visit us at 99 Canal St, NY 10002. Open 10:00 AM – 11:30 PM."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,8 +16,6 @@
       rel="stylesheet"
     />
     <style>
-      /* Comfort Spa Stylesheet */
-
       /* Base Styles */
       body {
         font-family: 'Josefin Sans', sans-serif;
@@ -56,7 +54,7 @@
         justify-content: center;
         align-items: center;
         padding: 1rem;
-        background-color: #6B73FF; /* Calming purple-blue background */
+        background-color: #6B73FF;
         position: fixed;
         top: 0;
         width: 100%;
@@ -64,13 +62,9 @@
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       }
 
-      /* Add margin to the top of the body to avoid content being hidden behind the fixed nav */
+      /* Push content below fixed nav */
       body {
-        margin-top: 70px; /* Adjust based on nav height */
-      }
-
-      nav img {
-        height: 50px;
+        margin-top: 70px;
       }
 
       nav ul {
@@ -97,7 +91,9 @@
 
       /* Home Section */
       .home {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background-image:
+          linear-gradient(135deg, rgba(102, 126, 234, 0.6), rgba(118, 75, 162, 0.7)),
+          url("2.avif");
         background-size: cover;
         background-position: center;
         height: 100vh;
@@ -107,7 +103,6 @@
         justify-content: center;
         color: white;
         text-align: center;
-        margin-top: 70px;
         position: relative;
         overflow: hidden;
       }
@@ -130,7 +125,8 @@
       }
 
       .home-content {
-        background-color: rgba(255, 255, 255, 0.1);
+        position: relative;
+        background-color: rgba(255, 255, 255, 0.12);
         backdrop-filter: blur(10px);
         padding: 40px;
         border-radius: 20px;
@@ -151,9 +147,15 @@
 
       .spa-tagline {
         font-size: 1.3rem;
-        margin-bottom: 20px;
-        opacity: 0.9;
+        margin-bottom: 10px;
+        opacity: 0.95;
         font-style: italic;
+      }
+
+      .spa-hours {
+        margin-top: 5px;
+        font-size: 1rem;
+        opacity: 0.9;
       }
 
       /* Gallery Section */
@@ -163,80 +165,92 @@
       }
 
       .gallery-container {
-        max-width: 1200px;
+        max-width: 1100px;
         margin: 0 auto;
       }
 
-      .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 25px;
-        margin: 40px 0;
-      }
-
-      .gallery-item {
+      /* Carousel */
+      .carousel {
         position: relative;
         overflow: hidden;
-        border-radius: 15px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
-        cursor: pointer;
-        background: white;
-        aspect-ratio: 4/3;
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        background: #000;
       }
 
-      .gallery-item:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      .carousel-track {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
       }
 
-      .gallery-item img {
+      .carousel-slide {
+        min-width: 100%;
+        max-height: 550px;
+      }
+
+      .carousel-slide img {
         width: 100%;
         height: 100%;
+        max-height: 550px;
         object-fit: cover;
-        transition: transform 0.3s ease;
+        display: block;
       }
 
-      .gallery-item:hover img {
-        transform: scale(1.05);
-      }
-
-      .gallery-overlay {
+      .carousel-btn {
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg, rgba(107, 115, 255, 0.8), rgba(118, 75, 162, 0.8));
+        top: 50%;
+        transform: translateY(-50%);
+        border: none;
+        background: rgba(0,0,0,0.35);
+        color: #fff;
+        font-size: 2rem;
+        padding: 10px 16px;
+        cursor: pointer;
+        border-radius: 999px;
+        z-index: 10;
+        transition: background 0.3s ease, transform 0.2s ease;
+      }
+
+      .carousel-btn:hover {
+        background: rgba(0,0,0,0.55);
+        transform: translateY(-50%) scale(1.05);
+      }
+
+      .carousel-btn-prev {
+        left: 15px;
+      }
+
+      .carousel-btn-next {
+        right: 15px;
+      }
+
+      .carousel-dots {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
         display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        transition: opacity 0.3s ease;
+        gap: 8px;
       }
 
-      .gallery-item:hover .gallery-overlay {
-        opacity: 1;
+      .carousel-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(255,255,255,0.5);
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.2s ease;
       }
 
-      .gallery-overlay-text {
-        color: white;
-        text-align: center;
-        padding: 20px;
+      .carousel-dot.active {
+        background: #FFD700;
+        transform: scale(1.2);
       }
 
-      .gallery-overlay h3 {
-        font-size: 1.5rem;
-        margin-bottom: 10px;
-        color: white;
-      }
+      /* (Old grid + modal styles kept, but not used directly) */
+      .gallery-grid { display:none; }
 
-      .gallery-overlay p {
-        font-size: 1rem;
-        opacity: 0.9;
-      }
-
-      /* Modal for full-size image viewing */
       .modal {
         display: none;
         position: fixed;
@@ -291,34 +305,6 @@
         color: #6B73FF;
       }
 
-      .gallery-nav {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(255,255,255,0.2);
-        backdrop-filter: blur(10px);
-        color: white;
-        border: none;
-        font-size: 24px;
-        padding: 15px 20px;
-        cursor: pointer;
-        border-radius: 50%;
-        transition: all 0.3s ease;
-      }
-
-      .gallery-nav:hover {
-        background: rgba(255,255,255,0.3);
-        transform: translateY(-50%) scale(1.1);
-      }
-
-      .prev-btn {
-        left: -60px;
-      }
-
-      .next-btn {
-        right: -60px;
-      }
-
       /* Call and Book Online Section */
       .contact-buttons {
         display: flex;
@@ -326,6 +312,8 @@
         justify-content: center;
         flex-wrap: wrap;
         margin-top: 20px;
+        position: relative;
+        z-index: 1;
       }
 
       .contact-card {
@@ -384,6 +372,7 @@
         margin: 20px auto;
         position: relative;
         border: 1px solid rgba(255, 255, 255, 0.4);
+        z-index: 1;
       }
 
       .booking-form.active {
@@ -508,7 +497,7 @@
         box-shadow: 0 6px 20px rgba(107, 115, 255, 0.4);
       }
 
-      /* Services and Reviews Containers */
+      /* Services and Specials */
       .services, .reviews-container {
         display: flex;
         flex-wrap: wrap;
@@ -529,7 +518,6 @@
         background: transparent;
       }
 
-      /* Service Box and Review Card */
       .service-box, .review-card {
         background: white;
         margin: 10px;
@@ -537,8 +525,10 @@
         border-radius: 15px;
         box-shadow: 0 5px 20px rgba(0,0,0,0.08);
         width: 320px;
+        max-width: 100%;
         transition: all 0.3s ease;
         border: 1px solid rgba(107, 115, 255, 0.1);
+        text-align: left;
       }
 
       .service-box:hover {
@@ -559,7 +549,17 @@
         line-height: 1.7;
       }
 
-      /* Price Wrapper */
+      .service-box ul {
+        padding-left: 18px;
+        margin: 0;
+        color: #555;
+        font-size: 0.98rem;
+      }
+
+      .service-box li {
+        margin-bottom: 6px;
+      }
+
       .service-box .price-wrapper {
         margin-top: 20px;
         background: linear-gradient(135deg, #f8f9ff 0%, #eef1ff 100%);
@@ -573,7 +573,7 @@
       .price-wrapper h4 {
         margin: 5px 0;
         color: #333;
-        font-size: 1.1rem;
+        font-size: 1.05rem;
       }
 
       /* Contact Section */
@@ -587,6 +587,7 @@
         flex-wrap: wrap;
         max-width: 1200px;
         margin: 0 auto;
+        gap: 25px;
       }
 
       .appointment-map {
@@ -598,6 +599,15 @@
         border-radius: 20px;
         box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         border: 1px solid rgba(107, 115, 255, 0.1);
+        max-width: 550px;
+        width: 100%;
+      }
+
+      .appointment-map iframe {
+        border: 0;
+        width: 100%;
+        height: 260px;
+        border-radius: 15px;
       }
 
       .appointment-info {
@@ -607,8 +617,8 @@
       }
 
       .appointment-info p {
-        margin: 15px 0;
-        font-size: 1.2rem;
+        margin: 10px 0;
+        font-size: 1.1rem;
         color: #555;
       }
 
@@ -640,17 +650,22 @@
         margin-top: 50px;
       }
 
+      footer p {
+        margin: 5px 0;
+        font-size: 0.95rem;
+      }
+
       /* Responsive Design */
       @media (max-width: 768px) {
         nav {
           flex-direction: column;
           padding: 15px;
         }
-        
+
         nav ul {
           margin-top: 15px;
         }
-        
+
         .home h1 {
           font-size: 2.5rem;
         }
@@ -669,24 +684,14 @@
         .form-row {
           flex-direction: column;
         }
-        
+
         .service-box, .review-card {
           width: 100%;
           max-width: 400px;
         }
 
-        .gallery-grid {
-          grid-template-columns: 1fr;
-          gap: 20px;
-        }
-
-        .gallery-nav {
-          display: none;
-        }
-
-        .modal-content {
-          max-width: 95%;
-          max-height: 85%;
+        .carousel-slide img {
+          max-height: 380px;
         }
       }
 
@@ -694,19 +699,19 @@
         section {
           padding: 40px 15px;
         }
-        
+
         section h2 {
           font-size: 2rem;
         }
-        
+
         .home-content {
           padding: 25px;
         }
-        
+
         .home h1 {
           font-size: 2rem;
         }
-        
+
         .book-button, .call-button {
           padding: 12px 25px;
           font-size: 1rem;
@@ -716,10 +721,9 @@
           font-size: 1.6rem;
         }
 
-        .gallery-grid {
-          grid-template-columns: 1fr;
-          gap: 15px;
-          margin: 20px 0;
+        .carousel-btn {
+          font-size: 1.6rem;
+          padding: 8px 12px;
         }
       }
     </style>
@@ -739,8 +743,10 @@
     <!-- Home Section -->
     <section id="home" class="home">
       <div class="home-content">
-        <h1>King Foot Massage</h1>
-        <p class="spa-tagline">Your sanctuary of tranquility and rejuvenation</p>
+        <h1>JOYSE Spa</h1>
+        <p class="spa-tagline">Relaxing body work & foot rub in Chinatown, New York</p>
+        <p class="spa-hours">Open daily 10:00 AM – 11:30 PM</p>
+        <p class="spa-hours">Address: 99 Canal St, New York, NY 10002</p>
       </div>
 
       <!-- Call and Book Online Cards -->
@@ -748,42 +754,42 @@
         <!-- Call Card -->
         <div class="contact-card">
           <h3>📞 Call for Appointment</h3>
-          <a href="tel:+1-469-639-0889" class="phone-number">469-639-0889</a>
-          <p>Speak directly with our friendly staff to schedule your perfect massage experience within 30 minutes.</p>
+          <a href="tel:+1-917-819-5988" class="phone-number">917-819-5988</a>
+          <p>Call our friendly staff to book your massage or ask about availability today.</p>
         </div>
 
         <!-- Book Online Card -->
         <div class="contact-card">
-          <h3>💻 Book Online</h3>
+          <h3>💻 Quick Booking Request</h3>
           <button class="book-button" onclick="showBookingForm()">Schedule Now</button>
-          <p>Use our convenient online form and we'll confirm your appointment within 30 minutes.</p>
+          <p>Send us your preferred time and service. We will confirm your appointment shortly.</p>
         </div>
       </div>
 
       <!-- Booking Form (Initially Hidden) -->
       <div id="bookingForm" class="booking-form">
         <button class="close-form" onclick="hideBookingForm()">&times;</button>
-        <h3>Schedule Your Visit</h3>
+        <h3>Schedule Your Visit at JOYSE Spa</h3>
         <form onsubmit="submitBooking(event)">
           <div class="form-row">
             <div class="form-group">
               <label for="firstName">First Name *</label>
-              <input type="text" id="firstName" name="firstName" required>
+              <input type="text" id="firstName" name="firstName" required />
             </div>
             <div class="form-group">
               <label for="lastName">Last Name *</label>
-              <input type="text" id="lastName" name="lastName" required>
+              <input type="text" id="lastName" name="lastName" required />
             </div>
           </div>
 
           <div class="form-group">
             <label for="phone">Phone Number *</label>
-            <input type="tel" id="phone" name="phone" required>
+            <input type="tel" id="phone" name="phone" required />
           </div>
 
           <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email">
+            <label for="email">Email Address (optional)</label>
+            <input type="email" id="email" name="email" />
           </div>
 
           <div class="form-group">
@@ -794,18 +800,18 @@
               <option value="2">2 People</option>
               <option value="3">3 People</option>
               <option value="4">4 People</option>
-              <option value="5+">5+ People (Call for Group Booking)</option>
+              <option value="5+">5+ People (please mention in notes)</option>
             </select>
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <label for="date">Preferred Date *</label>
-              <input type="date" id="date" name="date" required>
+              <input type="date" id="date" name="date" required />
             </div>
             <div class="form-group">
               <label for="time">Preferred Time *</label>
-              <input type="time" id="time" name="time" min="09:00" max="22:00" required>
+              <input type="time" id="time" name="time" min="10:00" max="23:30" required />
             </div>
           </div>
 
@@ -813,38 +819,36 @@
             <label for="service">Preferred Service</label>
             <select id="service" name="service">
               <option value="">Select a Service</option>
-              <option value="Full Body Massage (Swedish/Deep Tissue) - 30min">Full Body Massage (30min) - $50 Cash/$55 Card</option>
-              <option value="Full Body Massage (Swedish/Deep Tissue) - 60min">Full Body Massage (60min) - $70 Cash/$75 Card</option>
-              <option value="Full Body Massage (Swedish/Deep Tissue) - 90min">Full Body Massage (90min) - $100 Cash/$105 Card</option>
-              <option value="Combo Special (Body+Foot) - 60min">Combo Special (Body+Foot) 60min - $70 Cash/$75 Card</option>
-              <option value="Combo Special (Body+Foot) - 90min">Combo Special (Body+Foot) 90min - $100 Cash/$105 Card</option>
-              <option value="Foot Massage (cloth on) - 30min">Foot Massage (30min) - $35 Cash/$40 Card</option>
-              <option value="Foot Massage (Head+Arm+Foot+Back) - 60min">Foot Massage (Head+Arm+Foot+Back) 60min - $60 Cash/$65 Card</option>
-              <option value="Foot Massage (Head+Arm+Foot+Back) - 90min">Foot Massage (Head+Arm+Foot+Back) 90min - $90 Cash/$95 Card</option>
-              <option value="Chair Massage - 15min">Chair Massage (15min) - $20</option>
-              <option value="Chair Massage - 20min">Chair Massage (20min) - $30</option>
-              <option value="Chair Massage - 30min">Chair Massage (30min) - $40</option>
+              <option value="Body Work 20min">Body Work – 20min – $23 card / $20 cash</option>
+              <option value="Body Work 30min">Body Work – 30min – $38 card / $35 cash</option>
+              <option value="Body Work 45min">Body Work – 45min – $48 card / $45 cash</option>
+              <option value="Body Work 60min">Body Work – 60min (Free Hot Stone) – $58 card / $55 cash</option>
+              <option value="Body Work 90min">Body Work – 90min – $92 card / $85 cash</option>
+              <option value="Foot Rub 20min">Foot Rub – 20min – $23 card / $20 cash</option>
+              <option value="Foot Rub 30min">Foot Rub – 30min – $33 card / $30 cash</option>
+              <option value="Foot Rub 45min">Foot Rub – 45min – $43 card / $40 cash</option>
+              <option value="Foot Rub 60min">Foot Rub – 60min (Free Hot Stone) – $48 card / $45 cash</option>
+              <option value="Head Therapy 45min">Head Therapy – 45min – $63 card / $58 cash</option>
+              <option value="Head Therapy 60min">Head Therapy – 60min – $74 card / $68 cash</option>
+              <option value="Combo 30+30">Combo Massage – 30min Body + 30min Foot – $58 card / $55 cash</option>
+              <option value="Combo 45+45">Combo Massage – 45min Body + 45min Foot – $92 card / $85 cash</option>
+              <option value="Cupping">Cupping Therapy – $20</option>
             </select>
-          </div>
-
-          <div class="form-group">
-            <label for="addons">Add-ons (Optional)</label>
-            <select id="addons" name="addons" multiple>
-              <option value="Hot Stone (+$10)">Hot Stone (+$10)</option>
-              <option value="Essential Oil (+$10)">Essential Oil (+$10)</option>
-              <option value="CBD Oil/Cream (+$10)">CBD Oil/Cream (+$10)</option>
-            </select>
-            <small style="color: #666;">Hold Ctrl (PC) or Cmd (Mac) to select multiple options</small>
           </div>
 
           <div class="form-group">
             <label for="notes">Special Requests</label>
-            <textarea id="notes" name="notes" rows="3" placeholder="Any preferences, health considerations, or special requests..."></textarea>
+            <textarea
+              id="notes"
+              name="notes"
+              rows="3"
+              placeholder="Any preferences, health considerations, or special requests..."
+            ></textarea>
           </div>
 
           <button type="submit" class="submit-btn">Request Appointment</button>
           <p style="font-size: 0.9rem; color: #777; margin-top: 15px; text-align: center;">
-            We'll contact you within 30 minutes to confirm your appointment details.
+            This form sends a simple request. We will call or text you from <strong>917-819-5988</strong> to confirm the exact time.
           </p>
         </form>
       </div>
@@ -852,46 +856,308 @@
 
     <!-- Services Section -->
     <section id="services">
-      <h2>Our Massage Services</h2>
-      <h4>Hover or tap for detailed pricing information</h4>
+      <h2>Massage Services & Prices</h2>
+      <h4>Tap or hover on each box to see full pricing details (tax included)</h4>
+
+      <div class="services">
+        <!-- Body Work -->
+        <div class="service-box">
+          <h3>Body Work (Back Massage)</h3>
+          <p>
+            Relaxing or stronger body work focused on the back, shoulders, and whole body. Great for stress relief and muscle tension.
+          </p>
+          <ul>
+            <li>Professional therapists with gentle, friendly service.</li>
+            <li>Comfortable private rooms and quiet music.</li>
+            <li><strong>Free hot stone with 1-hour body work.</strong></li>
+          </ul>
+          <div class="price-wrapper">
+            <h4>20 min – $23 (card) / $20 (cash)</h4>
+            <h4>30 min – $38 (card) / $35 (cash)</h4>
+            <h4>45 min – $48 (card) / $45 (cash)</h4>
+            <h4>60 min – $58 (card) / $55 (cash)</h4>
+            <h4>90 min – $92 (card) / $85 (cash)</h4>
+          </div>
+        </div>
+
+        <!-- Foot Rub -->
+        <div class="service-box">
+          <h3>Foot Rub</h3>
+          <p>
+            Enjoy a soothing foot massage with pressure points to help improve circulation and ease tired feet.
+          </p>
+          <ul>
+            <li>Warm foot soak and comfortable recliner chairs.</li>
+            <li>Perfect after walking or a long day of work.</li>
+            <li><strong>Free hot stone with 1-hour foot rub.</strong></li>
+          </ul>
+          <div class="price-wrapper">
+            <h4>20 min – $23 (card) / $20 (cash)</h4>
+            <h4>30 min – $33 (card) / $30 (cash)</h4>
+            <h4>45 min – $43 (card) / $40 (cash)</h4>
+            <h4>60 min – $48 (card) / $45 (cash)</h4>
+          </div>
+        </div>
+
+        <!-- Head Therapy -->
+        <div class="service-box">
+          <h3>Head Therapy</h3>
+          <p>
+            Focused treatment for head, face, and neck to help you feel refreshed and renewed.
+          </p>
+          <ul>
+            <li>Includes gentle face cleaning and mask (60 min option).</li>
+            <li>Chinese herbal products and warm steam for deep relaxation.</li>
+          </ul>
+          <div class="price-wrapper">
+            <h4>45 min – $63 (card) / $58 (cash)</h4>
+            <h4>60 min – $74 (card) / $68 (cash)</h4>
+            <h4>60 min includes clean face, mask, Chinese medicine & steam.</h4>
+          </div>
+        </div>
+
+        <!-- Combo Massage -->
+        <div class="service-box">
+          <h3>Combo Massage (Body + Foot)</h3>
+          <p>
+            Combine body work and foot rub for complete head-to-toe relaxation in one visit.
+          </p>
+          <ul>
+            <li>Perfect choice if you want both back and foot treated.</li>
+            <li>Ideal as a gift for a friend or partner.</li>
+          </ul>
+          <div class="price-wrapper">
+            <h4>30 min Body + 30 min Foot – $58 (card) / $55 (cash)</h4>
+            <h4>45 min Body + 45 min Foot – $92 (card) / $85 (cash)</h4>
+          </div>
+        </div>
+
+        <!-- Cupping -->
+        <div class="service-box">
+          <h3>Cupping Therapy</h3>
+          <p>
+            Traditional cupping to help release tight muscles and support circulation. Often added after massage.
+          </p>
+          <ul>
+            <li>Can be focused on back or shoulder area.</li>
+            <li>Ask your therapist if cupping is suitable for you.</li>
+          </ul>
+          <div class="price-wrapper">
+            <h4>Cupping Therapy – $20</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <h4>A glimpse of the relaxing experience at JOYSE Spa</h4>
+
+      <div class="gallery-container">
+        <div class="carousel" id="spaCarousel">
+          <div class="carousel-track">
+            <div class="carousel-slide">
+              <img
+                src="https://spaandmassage.co.uk/wp-content/uploads/2025/08/guided_foot_pressure_points_ut1pv.jpg"
+                alt="Foot massage pressure points at JOYSE Spa"
+              />
+            </div>
+            <div class="carousel-slide">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1L-0O6Juxasb8QicSAXdnWLSQjLrVvGVr8HPij_dvsgW7cWCeMVBGB-12hqGhPUkx5oA&usqp=CAU"
+                alt="Relaxing body massage in a cozy room"
+              />
+            </div>
+            <div class="carousel-slide">
+              <img
+                src="https://images.squarespace-cdn.com/content/v1/5d5f2058a79cbf000111652a/1586842536251-IY8XEBZ4JINBCSKZKAHT/FaceMassage.jpg"
+                alt="Gentle face and head massage"
+              />
+            </div>
+          </div>
+
+          <button class="carousel-btn carousel-btn-prev" type="button" aria-label="Previous image">
+            &#10094;
+          </button>
+          <button class="carousel-btn carousel-btn-next" type="button" aria-label="Next image">
+            &#10095;
+          </button>
+
+          <div class="carousel-dots">
+            <button class="carousel-dot active" data-slide="0"></button>
+            <button class="carousel-dot" data-slide="1"></button>
+            <button class="carousel-dot" data-slide="2"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Specials Section -->
+    <section id="specials">
+      <h2>Special Offers</h2>
+      <h4>Enjoy more relaxation with great value at JOYSE Spa</h4>
+
       <div class="services">
         <div class="service-box">
-          <h3>Full Body Massage</h3>
+          <h3>Gift Certificates</h3>
           <p>
-            Choose between Swedish relaxation or Deep Tissue therapy massage to target your specific needs and preferences.
+            Treat friends, family, or coworkers to a relaxing experience. Our gift certificates are perfect for birthdays,
+            holidays, and thank-you gifts.
           </p>
-          <div class="price-wrapper">
-            <h4>30 min: $50 Cash / $55 Card</h4>
-            <h4>60 min: $70 Cash / $75 Card</h4>
-            <h4>90 min: $100 Cash / $105 Card</h4>
+          <div class="price-wrapper" style="display:block;">
+            <h4>🎁 Gift certificates available at the front desk.</h4>
           </div>
         </div>
 
         <div class="service-box">
-          <h3>Combo Special (Body + Foot)</h3>
+          <h3>Buy 10, Get 2 Free</h3>
           <p>
-            Get the best of both worlds with our combination massage that includes both body and foot massage for complete relaxation.
+            For regular guests, we offer a stamp card program to help you save on your favorite services.
           </p>
-          <div class="price-wrapper">
-            <h4>60 min: $70 Cash / $75 Card</h4>
-            <h4>90 min: $100 Cash / $105 Card</h4>
+          <div class="price-wrapper" style="display:block;">
+            <h4>Buy 10 sessions, get 2 sessions free (cash only).</h4>
           </div>
         </div>
 
         <div class="service-box">
-          <h3>Foot Massage</h3>
+          <h3>Friendly Reminder</h3>
           <p>
-            Our signature foot massage with cloth on, or comprehensive treatment including Head, Arm, Foot and Back massage.
+            Prices include tax. Tips in cash are always appreciated for your therapist’s hard work.
           </p>
-          <div class="price-wrapper">
-            <h4>30 min (cloth on): $35 Cash / $40 Card</h4>
-            <h4>60 min (Head+Arm+Foot+Back): $60 Cash / $65 Card</h4>
-            <h4>90 min (Head+Arm+Foot+Back): $90 Cash / $95 Card</h4>
+          <div class="price-wrapper" style="display:block;">
+            <h4>Cash & card accepted. Best price when paying with cash.</h4>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="service-box">
-          <h3>Chair Massage</h3>
-          <p>
-            Quick and convenient chair massage perfect for targeting neck, shoulders, and back tension during your busy day.
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2>Contact & Location</h2>
+      <h4>Visit JOYSE Spa in the heart of Chinatown, New York</h4>
+
+      <div class="appointment-card">
+        <div class="appointment-map">
+          <iframe
+            title="JOYSE Spa Map"
+            src="https://www.google.com/maps?q=99+Canal+St,+New+York,+NY+10002&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+
+          <div class="appointment-info">
+            <p><strong>Address:</strong> 99 Canal St, New York, NY 10002</p>
+            <p><strong>Phone:</strong> <a href="tel:+1-917-819-5988">917-819-5988</a></p>
+            <p><strong>Hours:</strong> Open daily 10:00 AM – 11:30 PM</p>
+            <p>
+              We welcome walk-ins when available, but calling ahead is recommended, especially on evenings and weekends.
+            </p>
+          </div>
+
+          <h3>How to Find Us</h3>
+          <p style="max-width: 480px; margin: 10px auto 0;">
+            Located on Canal Street in Chinatown, just a short walk from nearby subway stations.
+            Look for the JOYSE sign and relaxing spa entrance.
           </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>悦色 JOYSE Spa &copy; <span id="year"></span>. All rights reserved.</p>
+      <p>99 Canal St, New York, NY 10002 · Tel: 917-819-5988</p>
+    </footer>
+
+    <script>
+      // Booking form controls
+      function showBookingForm() {
+        document.getElementById('bookingForm').classList.add('active');
+      }
+
+      function hideBookingForm() {
+        document.getElementById('bookingForm').classList.remove('active');
+      }
+
+      function submitBooking(event) {
+        event.preventDefault();
+        alert('Thank you! Your booking request has been received. We will contact you from 917-819-5988 to confirm.');
+        hideBookingForm();
+        event.target.reset();
+      }
+
+      // Show price details on hover / tap
+      document.querySelectorAll('.service-box').forEach(function (box) {
+        var priceWrapper = box.querySelector('.price-wrapper');
+        if (!priceWrapper) return;
+
+        box.addEventListener('mouseenter', function () {
+          priceWrapper.style.display = 'block';
+        });
+
+        box.addEventListener('mouseleave', function () {
+          // Keep always visible for specials where we set display:block inline
+          if (!box.closest('#specials')) {
+            priceWrapper.style.display = 'none';
+          }
+        });
+
+        // Toggle on click for mobile
+        box.addEventListener('click', function () {
+          if (box.closest('#specials')) return; // specials are always open
+          priceWrapper.style.display =
+            priceWrapper.style.display === 'block' ? 'none' : 'block';
+        });
+      });
+
+      // Simple image carousel
+      (function () {
+        var carousel = document.getElementById('spaCarousel');
+        if (!carousel) return;
+
+        var track = carousel.querySelector('.carousel-track');
+        var slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
+        var prevBtn = carousel.querySelector('.carousel-btn-prev');
+        var nextBtn = carousel.querySelector('.carousel-btn-next');
+        var dots = Array.from(carousel.querySelectorAll('.carousel-dot'));
+        var currentIndex = 0;
+
+        function updateSlide(index) {
+          if (index < 0) index = slides.length - 1;
+          if (index >= slides.length) index = 0;
+          currentIndex = index;
+          var offset = -index * 100;
+          track.style.transform = 'translateX(' + offset + '%)';
+
+          dots.forEach(function (dot, i) {
+            dot.classList.toggle('active', i === index);
+          });
+        }
+
+        prevBtn.addEventListener('click', function () {
+          updateSlide(currentIndex - 1);
+        });
+
+        nextBtn.addEventListener('click', function () {
+          updateSlide(currentIndex + 1);
+        });
+
+        dots.forEach(function (dot) {
+          dot.addEventListener('click', function () {
+            var slideIndex = parseInt(dot.getAttribute('data-slide'), 10);
+            updateSlide(slideIndex);
+          });
+        });
+
+        // Auto-play every 7 seconds
+        setInterval(function () {
+          updateSlide(currentIndex + 1);
+        }, 7000);
+      })();
+
+      // Footer year
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
